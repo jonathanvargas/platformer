@@ -8,7 +8,7 @@ game.PlayScreen = me.ScreenObject.extend({
                 
                 me.levelDirector.loadLevel("Level1");
                 
-                this.resetPlayer();
+                this.resetPlayer(0, 420);
                 
               
 
@@ -26,8 +26,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.game.world.removeChild(this.HUD);
 	},
                 
-                resetPlayer: function(){
-                  var player = new game.PlayerEntity(0, 420, {});
-                  me.game.add(player, 3);
+                resetPlayer: function(x, y){
+                  var player = me.pool.pull("player", x, y, {});
+                  me.game.world.addChild(player, 3);
                 }
 });
